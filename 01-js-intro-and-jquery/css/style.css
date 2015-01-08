@@ -1,0 +1,14 @@
+.hidden{
+	text-align: center;
+	display: none;
+}
+
+.albums{
+	float: right;
+}
+
+
+ul{
+	list-style: none;
+}
+

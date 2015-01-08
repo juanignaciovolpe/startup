@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+        <title>Topic 1</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+        
+
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+
+    <body>
+ 
+
+        <section class="hidden">
+          Hello world 
+        </section>
+
+        
+        <section class="albums">
+        <input type="text" id="buscar" placeholder="Album name"><br> 
+        <button id="getAlbums">Get Albums from Artist</button> 
+        <div class="albumsDiv"></div>
+        </section>
+
+
+        <form>
+        <input type="text" class="alisds"><br>
+          <input type="text" class="alias"><br>
+        </form>
+
+        <button id="getName">Get JSON data</button>
+
+        <script>
+            $(document).ready(function(){
+
+              $(".hidden").fadeIn(3000);
+              $(".alias").focus();
+
+              $("#getName").click(function(){
+                $.getJSON("http://bootcamp.aws.af.cm/welcome/JuanVolpe",function(result){
+                  $.each(result, function(i, field){
+                    $(".hidden").text(field + " ");
+
+                    $(".hidden").css("background-color","#FFFF00");
+
+                  });
+                }).error(function() { $(".hidden").css("color","red"); });
+              });
+
+
+
+              $.getJSON('http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=Rolling%20Stones&api_key=3aa7850b23707d1bc98ded3bfa9f67be&format=json', function(data) {
+                  var items = [];
+                  var albums = data.topalbums.album;
+
+                  $.each(albums, function(i, album) {
+                    items.push('<li><ul><li>' + album.name + '</li><li><a href="' + album.url + '">ver en last.fm</a></li><li><img src="' + album.image[0]['#text'] +'"/></li></ul></li>');
+                  });
+
+                  $('<ul/>', {
+                    'class': 'my-new-list',
+                    html: items.join('')
+                  }).appendTo('.albumsDiv');
+              });
+
+
+              $("#getAlbums").click(function(){
+
+                $(".albumsDiv").html('');
+                var artist =  $('#buscar').val();
+            
+                $.getJSON('http://ws.audioscrobbler.com/2.0/',
+                  data= {
+                          method:"artist.gettopalbums",
+                          artist: artist,
+                          api_key:"3aa7850b23707d1bc98ded3bfa9f67be",
+                          format:"json",
+                        }, 
+                function(data) {
+                  console.log(data);
+                  var items = [];
+                  var albums = data.topalbums.album;
+
+                  if (albums) {
+                      $.each(albums, function(i, album) {
+                    items.push('<li><ul><li>' + album.name + '</li><li><a href="' + album.url + '">ver en last.fm</a></li><li><img src="' + album.image[0]['#text'] +'"/></li></ul></li>');
+                  });
+
+                  $('<ul/>', {
+                    'class': 'my-new-list',
+                    html: items.join('')
+                  }).appendTo('.albumsDiv');
+                  }else { 
+                      alert('No hay resultado para ese artista');
+                  }
+
+                  
+                });
+
+              });
+
+              
+            });
+        </script>
+
+    </body>
+</html>
+
+
+
+  
+
+</script>
+</head>
+<body>
+
+
+
+
+</body>
+</html>
+
+
+
+
+
