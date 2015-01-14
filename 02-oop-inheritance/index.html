@@ -1,0 +1,365 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+        <title>Topic 2</title>
+
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+        <!-- <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script> -->
+        
+
+        <!-- <link href="css/style.css" rel="stylesheet"> -->
+    </head>
+
+    <body>
+ 
+    <script type="text/javascript">
+
+      function Movie (Name, Year) {
+            this.name = Name;
+            this.year = Year;
+            this.observers = [];
+            
+            
+      }
+      
+      Movie.prototype = {
+          constructor: Movie,
+          play:function ()  {
+              
+              console.log('Reproduciendo: ' + this.name + ' del año ' + this.year);
+              for (var i = 0; i < this.observers.length; i++) {
+              this.observers[i].isWatching(this.name, this.year)
+              };
+
+          },
+          stop:function ()  {
+              console.log(this.name + ' del año ' + this.year + ' se ha detenido');
+              for (var i = 0; i < this.observers.length; i++) {
+              this.observers[i].stopWatching(this.name, this.year)
+              };
+          },
+          addObserver: function(observer) {
+            this.observers.push(observer)
+          }, 
+          removeObserver: function(observer) {
+            var index = this.observers.indexOf(observer)
+
+            if (~index) {
+              this.observers.splice(index, 1)
+            }
+          },
+          setName:function (name)  {
+              this.name = name
+          },
+          setYear:function (year)  {
+              this.year = years
+          },
+          getName:function ()  {
+              return this.name;
+          },
+          getYear:function ()  {
+              return this.year;
+          }
+      };
+
+     
+
+
+
+      function MediaObserver (Name, Age) {
+            this.name = Name;
+            this.age = Age;
+            
+          }
+
+      MediaObserver.prototype = {
+          constructor: MediaObserver,
+          isWatching: function(movieName, movieYear)  {
+            return console.log(this.name + ' de ' + this.age + ' años de edad esta viendo ' + movieName + ' del año ' + movieYear)
+          },
+          stopWatching: function(movieName, movieYear)  {
+            return console.log(this.name + ' de ' + this.age + ' años de edad dejo de ver ' + movieName + ' del año ' + movieYear)
+          }
+      }
+
+      function Movie (Name, Year) {
+                  this.name = Name;
+                  this.year = Year;
+                  this.observers= [];
+                  
+                }
+
+      function DownloadableMovie(Name, Year) {
+
+        Movie.call(this, Name, Year);
+        this.timesDownloaded = 0;
+      };
+
+      DownloadableMovie.prototype = Object.create(Movie.prototype);   
+
+      DownloadableMovie.prototype.constructor = DownloadableMovie;
+
+      DownloadableMovie.prototype.download = function(){
+        console.log(this.name + ' se comenzo a descargar');
+        this.timesDownloaded += 1;
+      };
+
+      firstMovie = new Movie("Terminator", 1984); 
+      firstObserver = new MediaObserver("John", 27);  
+      firstMovie.addObserver(firstObserver);
+      firstMovie.play();
+      firstMovie.stop();
+
+      secondMovie = new Movie("jurassic park", 1993); 
+      secondMovie.play();
+
+
+    
+   
+      var Social = function () {};
+       
+      Social.prototype = {
+       
+          share: function (friendName) {
+              console.log( "Sharing " + this.name + " with " + friendName );
+          },
+       
+          like: function () {
+              console.log( "someone pick the like button of" + this.name );
+          } 
+      };
+       
+       
+      // Extend an existing object with a method from another
+      function augment( receivingClass, givingClass ) {
+       
+              for ( var methodName in givingClass.prototype ) {
+       
+                  if ( !Object.hasOwnProperty.call(receivingClass.prototype, methodName) ) {
+                      receivingClass.prototype[methodName] = givingClass.prototype[methodName];
+                  }
+                
+              }
+        
+      }
+       
+      
+      augment( Movie, Social);
+     
+      newMovie = new Movie("gladiator", 2000); 
+    
+      newMovie.share("Roger");
+
+
+
+
+      //Module Pattern
+      var movieModule = (function () {
+ 
+      // privates
+      this.name = '';
+      this.year = '';
+     
+      function setNamePrivate(name) {
+        this.name = name;
+      }
+
+      function setYearPrivate(year) {
+        this.year = year;
+      }
+
+      function getNamePrivate() {
+        return this.name;
+      }
+
+      function getYearPrivate() {
+        return this.year;
+      }
+       
+      // Return an object exposed to the public
+      return {
+     
+        play:function ()  {
+          console.log('Reproduciendo: ' + this.name + ' del año ' + this.year);
+        },
+        
+        stop:function ()  {
+          console.log(this.name + ' del año ' + this.year + ' se ha detenido');
+        }, 
+ 
+        // Public alias to a  private function
+        getName: getNamePrivate,
+        setName: setNamePrivate,
+        getYear: getYearPrivate,
+        setYear: setYearPrivate,
+     
+      };
+    })();
+
+
+    movieModule.setName('Los bañeros');
+    movieModule.setYear(2005);
+    movieModule.play();
+
+
+
+    
+
+
+
+
+
+
+
+    // Create an Actor class and create some actors from one of your favorite movies.
+
+
+    function Actor (name, sex, born) {
+      this.name = name;
+      this.sex = sex;
+      this.born = born;
+    }
+      
+    Actor.prototype = {
+      constructor: Actor,
+      getName:function ()  {
+        return this.name;
+      },
+      getSex:function ()  {
+        return this.sex;
+      },
+      getBorn:function ()  {
+        return this.born;
+      }
+    };
+
+
+    firtsActor = new Actor("Robin Williams", "m", "21/07/1951"); 
+    secondActor = new Actor("Bruce Willis", "m", "19/03/1955"); 
+    thirdActor = new Actor("Scarlett Johansson", "f", "22/11/1984");
+    fourthActor = new Actor("Jonathan Rhys Meyers", "m", "27/03/1977");
+    
+
+    console.log(thirdActor.getName());
+
+    function Movie (Name, Year) {
+            this.name = Name;
+            this.year = Year;
+            this.actors = [];
+            this.observers = [];
+            
+            
+      }
+      
+      Movie.prototype = {
+          constructor: Movie,
+          play:function ()  {
+              
+              console.log('Reproduciendo: ' + this.name + ' del año ' + this.year);
+              for (var i = 0; i < this.observers.length; i++) {
+              this.observers[i].isWatching(this.name, this.year)
+              };
+
+          },
+          stop:function ()  {
+              console.log(this.name + ' del año ' + this.year + ' se ha detenido');
+              for (var i = 0; i < this.observers.length; i++) {
+              this.observers[i].stopWatching(this.name, this.year)
+              };
+          },
+          addObserver: function(observer) {
+            this.observers.push(observer)
+          }, 
+          removeObserver: function(observer) {
+            var index = this.observers.indexOf(observer)
+
+            if (~index) {
+              this.observers.splice(index, 1)
+            }
+          }, 
+          addActors: function(actorsArray) {
+            for (var i = 0; i < actorsArray.length; i++) {
+              var actor = actorsArray[i];
+              this.actors.push(actor);
+            };
+          },
+          getActors: function() {
+            console.log('Actores que aparecen en ' + this.name);
+            for (var i = 0; i < this.actors.length; i++) {
+               console.log(this.actors[i].name);
+              };
+          },
+          setName:function (name)  {
+              this.name = name
+          },
+          setYear:function (year)  {
+              this.year = years
+          },
+          getName:function ()  {
+              return this.name;
+          },
+          getYear:function ()  {
+              return this.year;
+          }
+      };
+
+    newMovie = new Movie("Match Point", 2005);
+    actors = [];
+    actors.push(thirdActor);
+    actors.push(fourthActor);
+
+    //console.log(actors);
+
+     newMovie.addActors(actors);
+     newMovie.getActors();
+
+    // newMovie.getActors;
+
+
+
+    
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    // Show how you would add an array of actors to a Movie object.
+     
+    
+
+    </script>
+        
+
+    </body>
+</html>
+
+
+
+  
+
+</script>
+</head>
+<body>
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+

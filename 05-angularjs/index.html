@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Probando Ajax en AngularJS</title>
+    <style>
+        body{ font-family: sans-serif;}
+        li{
+            font-size: 0.8em;
+        }
+        li span{
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body ng-app="app">
+    <nav ng-controller="navCtrl as nav">
+        <ul>
+            <li ng-class="{marcado: nav.estoy('/')}">
+                <a href="#/">Datos personales</a>
+            </li>
+            <li ng-class="{marcado: nav.estoy('/descargas')}">
+                <a href="#/descargas">Descargas</a>
+            </li>
+            <li ng-class="{marcado: nav.estoy('/opciones')}">
+                <a href="#/opciones">Opciones de cuenta</a>
+            </li>
+        </ul>
+    </nav>
+    <hr />
+    <div ng-view></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.24/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.24/angular-route.js"></script>
+    <script type="text/javascript">
+    angular.module("app", ["ngRoute"])
+    .config(function($routeProvider){
+        $routeProvider
+            .when("/", {
+                controller: "appCtrl",
+                controllerAs: "vm",
+                templateUrl: "home.html"
+            })
+            .when("/descargas", {
+                controller: "appCtrl",
+                controllerAs: "vm",
+                templateUrl: "descargas.html"
+            })
+            .when("/opciones", {
+                controller: "appCtrl",
+                controllerAs: "vm",
+                templateUrl: "opciones.html"
+            });
+    })
+    .controller("navCtrl", function($location){
+        var map = this;
+        map.estoy = function(ruta){
+            return $location.path() == ruta;
+        }
+    });</script>
+</body>
+</html>
