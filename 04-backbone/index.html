@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Beer List</title>
+	<link href="Site.css" rel="stylesheet" />
+	<script src="handlebars.js"></script>
+	<script src="jquery-2.1.3.min.js"></script>
+
+</head>
+<body>
+
+
+
+
+
+	<div id="contenido">
+
+	</div>
+	<script id="nuestra-plantilla" type="text/x-handlebars-template">
+	<ul>
+	
+	    <li><strong>Movie</strong>: {{name}}
+	        <ul>
+	            <li><strong>Year</strong>: {{year}}</li>
+	            <li>{{review}}</li>
+	            <li><strong>Director</strong>: {{director}}</li>
+	            <li><strong>Writer</strong>: {{writer}}</li>
+	            <li><strong>Stars</strong>
+	            <ul>
+	            {{#each this.stars}}
+	            	<li>
+	            
+	            		{{this}}
+	            	</li>
+	            {{/each}}
+	            </ul>
+	            </li>
+	            <li>{{{img this.cover}}} </li>
+	            
+	        </ul>        
+	    </li>
+	
+	</ul>
+	</script>
+
+
+	<script type="text/javascript">
+
+		Handlebars.registerHelper('img', function(src) {
+		  src = Handlebars.escapeExpression(src);
+		 
+		  return new Handlebars.SafeString(
+		    "<img src='" + src + "'/>"
+		  );
+		});
+
+
+		var fuente = $('#nuestra-plantilla').html();
+		var plantilla = Handlebars.compile(fuente);
+
+		var movie = {
+		            name: 'The Shawshank Redemption',
+		            year: 'year',
+		            director: 'Frank Darabont',
+		            writer: 'writer',
+		            review: 'Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.',
+		            stars: ['Tim Robbins', 'Morgan Freeman', 'Bob Gunton'],
+		            cover: 'http://ia.media-imdb.com/images/M/MV5BODU4MjU4NjIwNl5BMl5BanBnXkFtZTgwMDU2MjEyMDE@._V1_SX214_AL_.jpg',
+		            
+		        	};
+		        	
+		var html = plantilla(movie);
+
+		//console.log(movie[0].stars[2])
+		$('#contenido').html(html);
+	</script>
+
+
+</body>
+</html>

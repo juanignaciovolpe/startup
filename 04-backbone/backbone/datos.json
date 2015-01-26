@@ -1,0 +1,86 @@
+[
+  {
+                "id": "1",
+                "title": "The Shawshank Redemption",
+                "cover": "http://ia.media-imdb.com/images/M/MV5BODU4MjU4NjIwNl5BMl5BanBnXkFtZTgwMDU2MjEyMDE@._V1_SX214_AL_.jpg",
+                "director": "Frank Darabont"
+            },
+            {
+                "id": "2",
+                "title": "The Godfather",
+                "cover": "http://ia.media-imdb.com/images/M/MV5BMjEyMjcyNDI4MF5BMl5BanBnXkFtZTcwMDA5Mzg3OA@@._V1_SX214_AL_.jpg",
+                "director": "Francis Ford Coppola"
+                
+            },
+            {
+                "id": "3",
+                "title": "The Dark Knight",
+                "cover": "http://ia.media-imdb.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SY317_CR0,0,214,317_AL_.jpg",
+                "director": "Christopher Nolan"
+                
+            },
+            {
+                "id": "4",
+                "title": "Pulp Fiction",
+                "cover": "http://ia.media-imdb.com/images/M/MV5BMjE0ODk2NjczOV5BMl5BanBnXkFtZTYwNDQ0NDg4._V1_SY317_CR4,0,214,317_AL_.jpg",
+                "director": "Quentin Tarantino"
+                
+            },
+            {
+                "id": "5",
+                "title": "The Good, the Bad and the Ugly",
+                "cover": "http://ia.media-imdb.com/images/M/MV5BOTQ5NDI3MTI4MF5BMl5BanBnXkFtZTgwNDQ4ODE5MDE@._V1_SX214_AL_.jpg",
+                "director": "Sergio Leone"
+                
+            },
+            {
+                "id": "6",
+                "title": "12 Angry Men",
+                "cover": "http://ia.media-imdb.com/images/M/MV5BODQwOTc5MDM2N15BMl5BanBnXkFtZTcwODQxNTEzNA@@._V1_SX214_AL_.jpg",
+                "director": "Sidney Lumet"
+                
+            },
+            {
+                "id": "7",
+                "title": "Schindler s List",
+                "cover": "http://ia.media-imdb.com/images/M/MV5BMzMwMTM4MDU2N15BMl5BanBnXkFtZTgwMzQ0MjMxMDE@._V1_SX214_AL_.jpg",
+                "director": "Steven Spielberg"
+                
+            },
+            {
+                "id": "8",
+                "title": "The Shawshank Redemption",
+                "cover": "http://ia.media-imdb.com/images/M/MV5BODU4MjU4NjIwNl5BMl5BanBnXkFtZTgwMDU2MjEyMDE@._V1_SX214_AL_.jpg",
+                "director": "Frank Darabont"
+                
+            },
+            {
+                "id": "9",
+                "title": "The Lord of the Rings",
+                "cover": "http://ia.media-imdb.com/images/M/MV5BMjE4MjA1NTAyMV5BMl5BanBnXkFtZTcwNzM1NDQyMQ@@._V1_SX214_AL_.jpg",
+                "director": "Peter Jackson"
+                
+            },
+            {
+                "id": "10",
+                "title": "Fight Club",
+                "cover": "http://ia.media-imdb.com/images/M/MV5BMjIwNTYzMzE1M15BMl5BanBnXkFtZTcwOTE5Mzg3OA@@._V1_SX214_AL_.jpg",
+                "director": "David Fincher"
+                
+            },
+            {
+                "id": "11",
+                "title": "Star Wars: Episode V",
+                "cover": "http://ia.media-imdb.com/images/M/MV5BMjE2MzQwMTgxN15BMl5BanBnXkFtZTcwMDQzNjk2OQ@@._V1_SY317_CR0,0,214,317_AL_.jpg",
+                "director": "Irvin Kershner"
+                
+            },
+            {
+                "id": "12",
+                "title": "Christopher Nolan",
+                "cover": "http://ia.media-imdb.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX214_AL_.jpg",
+                "director": "Frank Darabont"
+                
+            }
+]
+
