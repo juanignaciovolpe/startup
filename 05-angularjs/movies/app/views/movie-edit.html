@@ -1,0 +1,21 @@
+<div class="alert" ></div>
+<h3>{{movie.name}}</h3>
+
+<img src="{{movie.cover}}">
+
+<!-- Entrada Movies -->
+    <form role="form" ng-submit="editMovie()">
+
+      <div class="input-group">
+        <input type="text" ng-model="movie.name" placeholder="New Movie" class="form-control">
+        <input type="text" ng-model="movie.director" placeholder="Director" class="form-control">
+        <input type="text" ng-model="movie.cover" placeholder="URL Cover" class="form-control">
+        <input type="text" ng-model="movie.year" placeholder="Year" class="form-control">
+        <input type="text" ng-model="movie.stars" placeholder="Stars" class="form-control">
+        <input type="text" ng-model="movie.writer" placeholder="Writer" class="form-control">
+
+      </div>
+      <input type="submit" class="btn btn-primary form-control" value="Add">
+
+
+    </form>

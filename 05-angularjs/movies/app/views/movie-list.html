@@ -1,0 +1,50 @@
+<h1>movies</h1>
+<div class="row">
+
+  <div class="col-md-6" >
+
+  <span ng-repeat="movie in movies">
+    <h3>{{movie.name}}</h3>
+    
+    <img src="{{movie.cover}}" class="movieCover">
+    
+    <span class="input-group-btn">
+      <button class="btn btn-danger" ng-click="deleteMovie($index)" aria-label="Delete">X</button>
+
+      <a ng-href="#/movies/{{$index}}/edit" class="btn">Editar</a>
+
+      <a ng-href="#/movies/{{$index}}" class="btn">Ver</a>
+
+    </span>
+    </span>
+
+  </div>
+
+  <div class="col-md-6">
+
+
+    <!-- Entrada Movies -->
+    <form role="form" ng-submit="addMovie()">
+
+      <div class="input-group">
+        <input type="text" ng-model="movie.name" placeholder="New Movie" class="form-control">
+        <input type="text" ng-model="movie.director" placeholder="Director" class="form-control">
+        <input type="text" ng-model="movie.cover" placeholder="URL Cover" class="form-control">
+        <input type="text" ng-model="movie.year" placeholder="Year" class="form-control">
+        <input type="text" ng-model="movie.stars" placeholder="Stars" class="form-control">
+        <input type="text" ng-model="movie.writer" placeholder="Writer" class="form-control">
+
+      </div>
+      <input type="submit" class="btn btn-primary form-control" value="Add">
+
+
+    </form>
+
+
+  </div>
+
+</div>
+
+
+  
+
