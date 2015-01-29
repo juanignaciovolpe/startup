@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Curso Básico de Backbone.js</title>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	
+	<style>
+		body {
+			font-family: 'Open Sans', Arial;
+		}
+	</style>
+</head>
+<body id="app">
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="page-header">
+				  <h1>Movies</h1>
+				</div>
+			</div>
+		</div>
+		<div id="movies" class="row">
+			<div class="col-md-8">
+				<div class="detalle"></div>
+
+				<div class="editar"></div>
+
+				<ul class="list-group movies">
+				</ul>
+			</div>
+			<div class="col-md-4">
+				<div class="panel panel-default">
+				  <div class="panel-heading"><b>Add Movie</b></div>
+				  <div class="panel-body">
+				    <form role="form">
+					  <div class="form-group">
+					    <label for="inputTitle">Title:</label>
+					    <input type="text" class="form-control" id="inputTitle" placeholder="Title">
+					  </div>
+					  <div class="form-group">
+					    <label for="inputCover">Cover:</label>
+					    <input type="text" class="form-control" id="inputCover" placeholder="Cover">
+					  </div>
+					  <div class="form-group">
+					    <label for="inputDirector">Director:</label>
+					    <input type="text" class="form-control" id="inputDirector" placeholder="Director">
+					  </div>	  
+					</form>
+				  </div>
+				</div>
+				<button class="btn btn-success" id="crear">Crear</button>
+			</div>
+			
+		</div>
+		
+	</div>
+	
+
+	
+
+	
+	
+	<script type="text/template" id="tplMostrarMovie">
+		<h4 class="list-group-item-heading"><b><%= title%></b></h4>
+		<div class="row">
+			<div class="col-md-7">
+		    	
+			</div>
+			<div class="col-md-5">
+				<button id="detalle" class="btn btn-primary" >Detalle</button>
+				<button id="editar" class="btn btn-primary" >Editar</button>
+				<button id="eliminar" class="btn btn-primary">Eliminar</button>
+			</div>
+		</div>
+		
+	</script>
+	
+	<script type="text/template" id="tplDetalleMovie">
+
+		<div>
+		  	<h4><b>Movie: </b><%= title%></h4>
+		</div>
+		<div>
+		  	<h4><b>Director: </b><%= director%></h4>
+		</div>
+		<div>
+		    <h4><b>Cover </b></h4>
+		    <img src="<%= cover%>"/>
+		</div>
+		      
+		 <button type="button" class="btn btn-primary atrasMovies">Atras</button>
+		    
+		    
+		</div>
+	</script>
+
+	<script type="text/template" id="tplEditarMovie">
+
+		<div>
+		  	<h4><%= title%></h4>
+		</div>
+		
+		<div>
+		    <img src="<%= cover%>"/>
+		</div>
+
+		<div class="panel panel-default">
+				  <div class="panel-heading"><b>Editar Movie</b></div>
+				  <div class="panel-body">
+				    <form role="form">
+					  <div class="form-group">
+					    <label for="inputTitle">Title:</label>
+					    <input type="text" class="form-control" id="inputTitle" value="<%= title%>">
+					  </div>
+					  <div class="form-group">
+					    <label for="inputCover">Cover:</label>
+					    <input type="text" class="form-control" id="inputCover" value="<%= cover%>">
+					  </div>
+					  <div class="form-group">
+					    <label for="inputDirector">Director:</label>
+					    <input type="text" class="form-control" id="inputDirector" value="<%= director%>r">
+
+					    <input type="hidden" id="inputId" value="<%= id%>">
+					  </div>	  
+					</form>
+				  </div>
+				</div>
+				<button class="btn btn-success" id="guardar">Guardar Edición</button>
+		      
+		 <button type="button" class="btn btn-primary atrasMovies">Atras</button>
+		    
+		    
+		</div>
+	</script>
+
+	
+
+	<script>
+		window.stade = '';
+		window.movieID = '';
+	</script>
+
+	<script src="js/vendor/jquery-1.11.2.min.js"></script>
+	<script src="js/vendor/bootstrap.min.js"></script>
+	<script src="js/vendor/underscore-min.js"></script>
+	<script src="js/vendor/backbone-min.js"></script>
+	<script src="js/vendor/backbone.localStorage-min.js"></script>
+
+	<script src="js/backbone/models/Movie.js"></script>
+	<script src="js/backbone/collections/Movies.js"></script>
+	<script src="js/backbone/views/libreria.js"></script>
+	<script src="js/backbone/routes/rutas.js"></script>
+	<script src="js/backbone/app.js"></script>
+
+
+</body>
+</html>
+
+

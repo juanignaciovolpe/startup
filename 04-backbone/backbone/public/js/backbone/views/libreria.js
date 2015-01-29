@@ -4,12 +4,14 @@ app.Libreria = Backbone.View.extend({
 
 	events:{
 		'click #crear': 'crearMovie',
+		'click #guardar': 'editarMovie',
 		
 	},
 
 	initialize: function(){
 		this.listenTo(app.movies, 'add', this.mostrarMovie);
 		this.listenTo(app.movies, 'remove', this.resetMovie);
+		this.listenTo(app.movies, 'change', this.resetMovie);
 		app.movies.fetch();
 	},
 
@@ -24,7 +26,31 @@ app.Libreria = Backbone.View.extend({
 			"title": $('#inputTitle').val(),
 			"cover": $('#inputCover').val(),
 			"director": $('#inputDirector').val(),
-		})
+		});
+		$('#inputTitle').val("");
+		$('#inputCover').val("");
+		$('#inputDirector').val("");
+
+	},
+	editarMovie: function(){
+		
+		var movie = app.movies.get($('#inputId').val()).set({
+			"title": $('#inputTitle').val(),
+			"cover": $('#inputCover').val(),
+			"director": $('#inputDirector').val(),
+		});
+
+		app.movies.get($('#inputId').val()).set({
+			"title": $('#inputTitle').val(),
+			"cover": $('#inputCover').val(),
+			"director": $('#inputDirector').val(),
+		}).save();
+		console.log(movie);
+		
+
+		
+		
+
 	},
 
 
@@ -41,6 +67,7 @@ app.MostrarMovieView = Backbone.View.extend({
 
 	events: {
 		'click #detalle': 'detalleMovie',
+		'click #editar': 'editarMovie',
 		'click #eliminar': 'eliminarMovie'
 	},
 
@@ -52,18 +79,33 @@ app.MostrarMovieView = Backbone.View.extend({
 
 		app.route.on('route:detalle', function(){
 			self.render();
+		});
+
+		app.route.on('route:editar', function(){
+			self.render();
 		})
 	},
 
 	render: function(){
+		
 		if(window.stade === "movie"){
+
 			$('.detalle').hide();
+			$('.editar').hide();
 			$('.movies').show();
 		}else if(window.stade === "detalle"){
 			$('.detalle').show();
+			$('.editar').hide();
 			$('.movies').hide();
 			if(this.model.get('id') === window.movieID){
 				new app.DetalleMovieView({model: this.model});
+			}
+		}else if(window.stade === "editar"){
+			$('.editar').show();
+			$('.detalle').hide();
+			$('.movies').hide();
+			if(this.model.get('id') === window.movieID){
+				new app.EditarMovieView({model: this.model});
 			}
 		}
 		this.$el.html(this.template(this.model.toJSON()));
@@ -72,6 +114,10 @@ app.MostrarMovieView = Backbone.View.extend({
 
 	detalleMovie: function(){
 		Backbone.history.navigate('movies/' + this.model.get('id'), {trigger:true});
+	},
+
+	editarMovie: function(){
+		Backbone.history.navigate('movies/' + this.model.get('id') +'/edit', {trigger:true});
 	},
 
 	eliminarMovie: function(){
@@ -83,6 +129,28 @@ app.MostrarMovieView = Backbone.View.extend({
 app.DetalleMovieView = Backbone.View.extend({
 	el: '.detalle',
 	template: _.template($('#tplDetalleMovie').html()),
+
+	events: {
+		'click .atrasMovies': 'atrasMovies'
+	},
+
+	initialize: function(){
+		this.render();
+	},
+
+	render: function(){
+		this.$el.html(this.template(this.model.toJSON()));
+	},
+
+	atrasMovies: function(){
+		Backbone.history.navigate('',{trigger: true});
+	}
+})
+
+
+app.EditarMovieView = Backbone.View.extend({
+	el: '.editar',
+	template: _.template($('#tplEditarMovie').html()),
 
 	events: {
 		'click .atrasMovies': 'atrasMovies'

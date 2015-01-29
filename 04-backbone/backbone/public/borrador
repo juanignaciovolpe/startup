@@ -1,0 +1,1 @@
+var a = new Libro({ titulo: 'titulo 1', autor: 'autor 1'});
