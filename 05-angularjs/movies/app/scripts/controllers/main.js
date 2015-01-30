@@ -11,7 +11,7 @@
  angular.module('moviesApp')
  .controller('MovieListCtrl', function ($scope) {
    
-  if($scope.movies == "undefined"){
+  if($scope.movies == "null"){
     $scope.movies = [];
   }
 
@@ -21,9 +21,23 @@
     
 
   $scope.addMovie = function () {
+
+       
+    
+
+
+
+$scope.movies = "";
+
+    alert($scope.movies);
    
       var data = localStorage.getItem('movies');
-      var movies = JSON.parse(data); 
+      if(data == null){
+        var movies = [];
+      }else{
+        var movies = JSON.parse(data);  
+      }
+      
 
       movies.push($scope.movie); 
       localStorage.setItem('movies', JSON.stringify(movies));
